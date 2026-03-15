@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory Manager Pro</title>
+    <title>Inventory Manager Pro 🦊</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,17 +13,24 @@
         <div class="form-box">
             <div class="input-group">
                 <label>Producto</label>
-                <input type="text" id="nombre" placeholder="Nombre del artículo">
+                <input type="text" id="nombre" placeholder="Ej: Monitor LED">
             </div>
             <div class="input-group">
                 <label>Precio</label>
-                <input type="number" id="precio" step="0.01">
+                <input type="number" id="precio" step="0.01" placeholder="0.00">
             </div>
             <div class="input-group">
                 <label>Stock</label>
-                <input type="number" id="stock">
+                <input type="number" id="stock" placeholder="Cantidad">
             </div>
-            <button id="btnGuardar">Guardar</button>
+            <div class="actions">
+                <button id="btnGuardar">Guardar</button>
+                <button id="btnCancelar" style="display: none; background: #64748b;">Cancelar</button>
+            </div>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="inputBusqueda" placeholder="🔍 Buscar por nombre o ID del producto...">
         </div>
 
         <table>
