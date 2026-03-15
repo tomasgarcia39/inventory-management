@@ -2,36 +2,30 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Inventario Zorro 🦊</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px; background-color: #eef2f3; color: #333; }
-        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
-        .form-group { margin-bottom: 15px; }
-        input { padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 200px; margin-right: 10px; }
-        button { padding: 10px 20px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        button:hover { background-color: #2980b9; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
-        th { background-color: #34495e; color: white; }
-        tr:nth-child(even) { background-color: #f9f9f9; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Manager Pro</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
-        <h1>📦 Gestión de Inventario</h1>
+        <h1>📦 Sistema de Gestión de Inventario</h1>
         
-        <h3>Agregar Nuevo Producto</h3>
-        <div class="form-group">
-            <input type="text" id="nombre" placeholder="Nombre del producto">
-            <input type="number" id="precio" placeholder="Precio">
-            <input type="number" id="stock" placeholder="Stock">
-            <button onclick="agregarProducto()">Guardar</button>
+        <div class="form-box">
+            <div class="input-group">
+                <label>Producto</label>
+                <input type="text" id="nombre" placeholder="Nombre del artículo">
+            </div>
+            <div class="input-group">
+                <label>Precio</label>
+                <input type="number" id="precio" step="0.01">
+            </div>
+            <div class="input-group">
+                <label>Stock</label>
+                <input type="number" id="stock">
+            </div>
+            <button id="btnGuardar">Guardar</button>
         </div>
 
-        <hr>
-
-        <h3>Lista de Productos</h3>
         <table>
             <thead>
                 <tr>
@@ -39,63 +33,12 @@
                     <th>Nombre</th>
                     <th>Precio</th>
                     <th>Stock</th>
+                    <th>Operaciones</th>
                 </tr>
             </thead>
-            <tbody id="tabla-productos"></tbody>
+            <tbody id="lista"></tbody>
         </table>
     </div>
-
-    <script>
-        // Función para cargar la lista desde el servidor
-        function cargarProductos() {
-            fetch('/productos')
-                .then(res => res.json())
-                .then(data => {
-                    const tbody = document.getElementById('tabla-productos');
-                    tbody.innerHTML = data.map(p => `
-                        <tr>
-                            <td>${p.id}</td>
-                            <td>${p.nombre}</td>
-                            <td>$${p.precio}</td>
-                            <td>${p.stock}</td>
-                        </tr>
-                    `).join('');
-                });
-        }
-        function agregarProducto() {
-            const producto = {
-                nombre: document.getElementById('nombre').value,
-                precio: parseFloat(document.getElementById('precio').value),
-                stock: parseInt(document.getElementById('stock').value)
-            };
-
-            fetch('/productos', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(producto)
-            })
-            .then(res => res.json())
-            .then(() => {
-                cargarProductos(); // Refresca la tabla automáticamente
-                // Limpia los campos
-                document.getElementById('nombre').value = '';
-                document.getElementById('precio').value = '';
-                document.getElementById('stock').value = '';
-            });
-        }
-
-        // Función para enviar un nuevo producto (necesitaremos un método POST en el Controller)
-        function agregarProducto() {
-            const nombre = document.getElementById('nombre').value;
-            const precio = document.getElementById('precio').value;
-            const stock = document.getElementById('stock').value;
-
-            // Por ahora vamos a usar una ruta simple para probar, 
-            // pero lo ideal es usar POST. ¿Te parece si actualizamos el Controller?
-            alert("¡Listo para conectar el botón de guardado!");
-        }
-
-        window.onload = cargarProductos;
-    </script>
+    <script src="js/app.js"></script>
 </body>
 </html>

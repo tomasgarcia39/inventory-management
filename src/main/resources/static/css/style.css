@@ -1,0 +1,23 @@
+:root {
+    --primary: #2563eb;
+    --danger: #dc2626;
+    --bg: #f8fafc;
+}
+
+body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 40px; }
+.container { max-width: 900px; margin: auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.form-box { display: flex; gap: 1rem; margin-bottom: 2rem; align-items: flex-end; }
+.input-group { display: flex; flex-direction: column; flex: 1; }
+input { padding: 0.5rem; border: 1px solid #cbd5e1; border-radius: 4px; }
+button { padding: 0.5rem 1rem; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer; }
+.btn-delete { background: var(--danger); }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 1rem; text-align: left; border-bottom: 1px solid #e2e8f0; }
+th { color: #64748b; font-size: 0.875rem; text-transform: uppercase; }
+.btn-edit {
+    background: #059669;
+    margin-right: 5px;
+}
+.btn-edit:hover {
+    background: #047857;
+}
