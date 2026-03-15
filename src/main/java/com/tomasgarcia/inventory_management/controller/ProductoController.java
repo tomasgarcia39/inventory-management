@@ -4,6 +4,8 @@ import com.tomasgarcia.inventory_management.model.Producto;
 import com.tomasgarcia.inventory_management.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -31,4 +33,11 @@ public class ProductoController {
     public List<Producto> getAll() {
         return repository.findAll();
     }
+ // Importante: Importar org.springframework.web.bind.annotation.PostMapping;
+ // Importante: Importar org.springframework.web.bind.annotation.RequestBody;
+
+ @PostMapping("/productos")
+ public Producto crearProducto(@RequestBody Producto producto) {
+     return repository.save(producto);
+ }
 }
