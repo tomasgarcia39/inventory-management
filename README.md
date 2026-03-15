@@ -28,7 +28,8 @@ Before running this project, ensure you have:
 ## ⚙️ Setup & Installation
 
 1. **Clone the repository**:
-   ```bash git clone [https://github.com/tomasgarcia39/inventory-management.git](https://github.com/tomasgarcia39/inventory-management.git)"# inventory-management" 
+
+   git clone [https://github.com/tomasgarcia39/inventory-management.git](https://github.com/tomasgarcia39/inventory-management.git)"# inventory-management" 
 
 **Configure the Database**
 
