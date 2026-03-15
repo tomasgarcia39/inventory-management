@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventario Zorro</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background-color: #f4f4f4; }
+        table { width: 100%; border-collapse: collapse; background: white; }
+        th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #2c3e50; color: white; }
+        .container { max-width: 800px; margin: auto; }
+        h1 { color: #2c3e50; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gestión de Inventario</h1>
+        <button onclick="cargarProductos()">Actualizar Lista</button>
+        <br><br>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-productos">
+                </tbody>
+        </table>
+    </div>
+
+    <script>
+        function cargarProductos() {
+            fetch('/productos')
+                .then(response => response.json())
+                .then(data => {
+                    const tabla = document.getElementById('tabla-productos');
+                    tabla.innerHTML = '';
+                    data.forEach(p => {
+                        tabla.innerHTML += `
+                            <tr>
+                                <td>${p.id}</td>
+                                <td>${p.nombre}</td>
+                                <td>$${p.precio}</td>
+                                <td>${p.stock}</td>
+                            </tr>
+                        `;
+                    });
+                });
+        }
+        // Cargar al iniciar
+        window.onload = cargarProductos;
+    </script>
+</body>
+</html>
